@@ -1,0 +1,36 @@
+from flask import Flask, render_template
+
+# Importa o módulo 'test'
+import test
+
+# Cria uma instância da classe Flask
+app = Flask(__name__)
+
+# Rota para a página inicial
+@app.route("/")
+def homepage():
+    # Retorna uma mensagem HTML formatada quando a rota "/" é acessada
+    return "<H1>Hello Web.py</H1>"
+
+# Rota para "/start"
+@app.route("/start")
+def start():
+    # Retorna a mensagem "Starting..." quando a rota "/start" é acessada
+    return "Starting..."
+
+# Rota para "/teste"
+@app.route("/teste")
+def lista_usuarios():
+    # Dados fictícios para passar para o template
+    usuarios = [
+        {"nome": "Alice", "idade": 25},
+        {"nome": "Bob", "idade": 30},
+        {"nome": "Charlie", "idade": 22},
+    ]
+
+    # Renderiza o template "teste.html" presente no diretório 'templates'
+    # Passa a lista de usuários como argumento para o template
+    return render_template("teste.html", usuarios=usuarios)
+
+# Executa a aplicação Flask em modo de depuração
+app.run(debug=True)
